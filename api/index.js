@@ -1,15 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-app.get('/', (req, res) => {
-    console.info('Calling API /');
+const errorHandler = require('./middlewares/error-handler');
+const router = require('./router');
 
-    res.status(200).json({
-        code: 200,
-        message: 'API WORKING!',
-        content: null
-    })
-});
+app.use([
+    bodyParser.json(),
+    router,
+    errorHandler
+]);
 
 app.listen(8000, () => {
     console.info(`API is running 🚀!`)

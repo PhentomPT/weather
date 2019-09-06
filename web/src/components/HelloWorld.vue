@@ -30,7 +30,7 @@
       </li>
       <li>
         <a
-          href="(https://xd.adobe.com/spec/25105437-c4bc-48cd-6dd5-ea67d6f935f3-5321)"
+          href="https://xd.adobe.com/spec/25105437-c4bc-48cd-6dd5-ea67d6f935f3-5321"
           target="_blank"
         >
           Design
