@@ -1,28 +1,37 @@
 import http from './http'
 
 export default {
-  async today (user, password) {
-    const response = await http.post('/weather/today', { user, password })
+  async today (cityName) {
+    const response = await http.get(`/weather/today/${cityName}`)
 
     if (response.status !== 200) {
       return false
     }
 
-    return response
+    console.log(response.data)
+
+    return response.data.content
   },
-  async forecast () {
-    const response = await http.get(`/weather/forecast`)
+  async forecast (cityName, cityCode = null) {
+    let findBy = cityName
+
+    if (cityCode) {
+      findBy += `/${cityCode}`
+    }
+
+    const response = await http.get(`/weather/forecast/${findBy}`)
 
     if (response.status !== 200) {
       return false
     }
 
     const list = response.data.content.list
-    console.log(list)
     const temps = {
       startTime: list[0].main.dt,
       data: []
     }
+
+    console.log(list)
     for (let index = 0; index < list.length; index++) {
       temps.data.push(list[index].main.temp)
     }

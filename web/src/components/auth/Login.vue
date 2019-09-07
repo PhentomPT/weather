@@ -88,30 +88,4 @@ export default {
   border-radius: 1px;
   color: white;
 }
-
-input {
-  background: #ffffff 0% 0% no-repeat padding-box;
-  width: 274px;
-  height: 28px;
-  border: 1px solid #d8dce6;
-  border-radius: 2px;
-  padding: 5px 10px;
-  margin-bottom: 20px;
-
-  &:active,
-  &:hover {
-    border: 1px solid #41aaaa;
-  }
-}
-
-button {
-  width: 84px;
-  background: #2e2f4f 0% 0% no-repeat padding-box;
-  box-shadow: 0px 2px 4px #00131a29;
-  border-radius: 1px;
-  border: 1px;
-  padding: 10px;
-  color: #fff;
-  cursor: pointer;
-}
 </style>

@@ -10,7 +10,7 @@ router.get('/', [], welcome);
 router.post('/login', [], auth.login);
 router.get('/logout/:email', [ authMiddleware ], auth.logout);
 
-router.get('/weather/today', [ authMiddleware ], weather.today);
-router.get('/weather/forecast', [ authMiddleware ], weather.forecast);
+router.get('/weather/today/:cityName', [ authMiddleware ], weather.today);
+router.get('/weather/forecast/:cityName/:cityCode?', [ authMiddleware ], weather.forecast);
 
 module.exports = router;
