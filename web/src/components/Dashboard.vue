@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Dashboard
+  <div class="dashboard">
+    Dashboard 1.0
   </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="postcss" scoped>
+.dashboard {
+  background: #fff;
+  color: #000;
+}
 </style>
