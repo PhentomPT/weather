@@ -8,8 +8,6 @@ export default {
       return false
     }
 
-    console.log(response.data)
-
     return response.data.content
   },
   async forecast (cityName, cityCode = null) {
@@ -26,16 +24,20 @@ export default {
     }
 
     const list = response.data.content.list
-    const temps = {
+    const data = {
       startTime: list[0].main.dt,
-      data: []
+      temp: [],
+      wind: [],
+      humidity: []
     }
 
-    console.log(list)
     for (let index = 0; index < list.length; index++) {
-      temps.data.push(list[index].main.temp)
+      const timestamp = list[index].dt * 1000
+      data.temp.push([timestamp, list[index].main.temp])
+      data.wind.push([timestamp, list[index].wind.speed])
+      data.humidity.push([timestamp, list[index].main.humidity])
     }
 
-    return temps
+    return data
   }
 }

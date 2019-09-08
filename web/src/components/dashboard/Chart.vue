@@ -4,12 +4,13 @@
 
 <script>
 const Highcharts = require('highcharts')
+const moment = require('moment')
 
 export default {
   props: [ 'series', 'startTime' ],
   data () {
     return {
-      graph: undefined
+      graph: null
     }
   },
   methods: {
@@ -26,7 +27,13 @@ export default {
           type: 'area'
         },
         xAxis: {
-          categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+          type: 'datetime',
+          labels: {
+            formatter: function () {
+              return Highcharts.dateFormat('%A', this.value)
+            }
+          },
+          tickInterval: 24 * 3600 * 1000
         },
         yAxis: {
           title: {
@@ -44,14 +51,19 @@ export default {
                   enabled: true
                 }
               }
-            }
+            },
+            lineColor: '#00646E'
+          }
+        },
+        tooltip: {
+          formatter: function () {
+            return `${moment(this.x).format('Y-M-D H:00:00')} : <b>${this.y}</b>`
           }
         },
         series: [{
           showInLegend: false,
           data: this.series,
-          pointStart: this.startTime,
-          pointInterval: 3 * 3600 * 1000 // 3 hours
+          color: '#B4E7E6'
         }]
       })
     }

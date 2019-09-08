@@ -1,10 +1,12 @@
 <template>
   <div class="location">
-    City Name<br/>
-    <input type="text" v-model="city.name" />
-    <br/><br/>
-    <div v-if="showCityCode">
-      City Code<br/>
+    <div>
+      <span class="title">City Name</span><br/>
+      <input type="text" v-model="city.name" />
+    </div>
+
+    <div v-if="showCountryCode">
+      <span class="title">Country Code</span><br/>
       <input type="text" v-model="city.code" />
     </div>
     <button @click="updateLocation">Update Data</button>
@@ -12,42 +14,46 @@
 </template>
 
 <script>
-import weather from '../../services/weather'
-
 export default {
   props: {
-    'showCityCode': {
+    'showCountryCode': {
       default: false
     }
   },
   data () {
     return {
-      city: {
-        name: null,
-        code: null
-      }
+
+    }
+  },
+  computed: {
+    city () {
+      return { ...this.$store.getters.city }
     }
   },
   methods: {
     async updateLocation () {
-      const data = await weather.today(this.city.name)
-      console.log(data)
-      this.$store.dispatch('updateLocation', this.city)
+      this.$store.dispatch('updateLocation', { ...this.city })
     }
-  },
-  mounted () {
-    this.city = this.$store.getters.city
   }
 }
 </script>
 
 <style lang="postcss" scoped>
+.title {
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .location {
   background: #fff;
   width: 300px;
-  height: 172px;
+  height: 100%;
   padding: 15px;
   border-radius: 4px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+button {
+  float: right;
 }
 </style>

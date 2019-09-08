@@ -5,7 +5,7 @@ export default {
   async login (user, password) {
     const response = await http.post('/login', { user, password })
 
-    if (response.status !== 200) {
+    if (response.data.code !== 200) {
       return false
     }
 

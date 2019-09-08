@@ -1,44 +1,28 @@
 <template>
-  <v-app>
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Login form</v-toolbar-title>
-                <div class="flex-grow-1"></div>
-              </v-toolbar>
-              <v-card-text>
-                <v-alert v-if="error" type="error">
-                  Invalid user/password
-                </v-alert>
-                <v-form>
-                  <v-text-field v-model="user" label="Login" name="login" prepend-icon="person" type="text"></v-text-field>
+  <div class="wrapper">
+    <div class="login">
+      <h1>Welcome to the weather app</h1>
+      <h2>🌨❄🌦🌥🌤☀🌧⛈🌦</h2>
 
-                  <v-text-field
-                    v-model="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                  ></v-text-field>
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <div class="flex-grow-1"></div>
-                <v-btn color="primary" @click="login">Login</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
+      <div class="error" v-if="error">Invalid Credentials</div>
+
+      <div class="input">
+        User<br/>
+        <input tpye="text" v-model="user" />
+      </div>
+
+      <div class="input">
+        Password<br/>
+        <input type="password" v-model="password"/><br/>
+      </div>
+
+      <button @click="login">Login</button>
+    </div>
+  </div>
 </template>
 
 <script>
-import user from '@/services/user'
+import user from '../../services/user'
 
 export default {
   data () {
@@ -65,6 +49,17 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
 .login {
   background: #fff;
   width: 600px;
@@ -78,6 +73,15 @@ export default {
 
 .login-form {
   margin: 0 auto;
+}
+
+.input {
+  padding: 0 25%;
+  text-align: left;
+}
+
+button {
+  float: right;
 }
 
 .error {
